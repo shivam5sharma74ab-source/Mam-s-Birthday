@@ -1,0 +1,320 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hey You 💖</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"><style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:linear-gradient(135deg,#ffd6e8,#fff7fb);overflow:hidden;}
+
+.slide{
+  width:100vw;height:100vh;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  text-align:center;
+  padding:20px;
+  animation:fade .9s ease;
+}
+.slide.active{display:flex;}
+
+@keyframes fade{
+  from{opacity:0;transform:translateY(25px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+h1{font-size:2.3rem;color:#ff4d88;margin-bottom:12px;}
+p{font-size:1.1rem;color:#444;max-width:520px;line-height:1.6;}
+
+button{
+  margin-top:18px;
+  padding:12px 28px;
+  border:none;
+  background:#ff4d88;
+  color:#fff;
+  border-radius:30px;
+  font-size:1rem;
+  cursor:pointer;
+  box-shadow:0 10px 25px rgba(255,77,136,.4);
+  transition:.3s;
+}
+button:hover{transform:scale(1.08)}
+
+.photo{
+  width:230px;height:300px;
+  object-fit:cover;
+  border-radius:22px;
+  margin:22px 0;
+  box-shadow:0 15px 35px rgba(0,0,0,.25);
+}
+
+.video{
+  width:260px;
+  max-width:90vw;
+  border-radius:22px;
+  margin:22px 0;
+  box-shadow:0 15px 35px rgba(0,0,0,.25);
+}
+
+/* Hearts */
+.heart{
+  position:absolute;
+  color:#ff4d88;
+  animation:float 6s linear infinite;
+}
+@keyframes float{
+  0%{transform:translateY(100vh);opacity:0}
+  20%{opacity:1}
+  100%{transform:translateY(-10vh);opacity:0}
+}
+
+/* Cake */
+.cake{
+  width:260px;height:160px;
+  position:relative;
+  margin-top:25px;
+  background:linear-gradient(#ffb6c1,#ff8fab);
+  border-radius:30px 30px 18px 18px;
+}
+.cake:before{
+  content:"";
+  position:absolute;
+  top:22px;
+  width:100%;
+  height:28px;
+  background:#fff;
+  border-radius:30px;
+}
+.candles{
+  position:absolute;
+  top:-50px;
+  width:100%;
+  display:flex;
+  justify-content:space-evenly;
+}
+.candle{
+  width:12px;height:45px;
+  background:#fff;
+  border-radius:6px;
+  position:relative;
+}
+.flame{
+  width:14px;height:14px;
+  background:orange;
+  border-radius:50%;
+  position:absolute;
+  top:-14px;left:-1px;
+  animation:flicker .4s infinite;
+}
+@keyframes flicker{
+  0%{transform:scale(1)}
+  50%{transform:scale(.8)}
+  100%{transform:scale(1)}
+}
+
+/* Music */
+.music{
+  position:fixed;
+  top:15px;right:15px;
+  background:#fff;
+  padding:10px 14px;
+  border-radius:30px;
+  cursor:pointer;
+  box-shadow:0 5px 15px rgba(0,0,0,.2);
+  z-index:10;
+}
+.music-list{
+  position:fixed;
+  top:60px;right:15px;
+  background:#fff;
+  border-radius:18px;
+  box-shadow:0 5px 15px rgba(0,0,0,.25);
+  display:none;
+}
+.music-list div{
+  padding:10px 16px;
+  cursor:pointer;
+}
+.music-list div:hover{background:#ffe3f0}
+
+/* Video (Reels Style) */
+.video{
+  width:320px;
+  aspect-ratio:9/16;
+  max-height:75vh;
+  object-fit:cover;
+  border-radius:22px;
+  margin:18px 0;
+  box-shadow:0 15px 35px rgba(0,0,0,.25);
+}
+
+/* Typing */
+.typing{
+  min-height:90px;
+  white-space:pre-line;
+}
+</style></head><body><div class="music" onclick="toggleMusic()">🎵 Music</div>
+<div class="music-list" id="musicList">
+  <div onclick="playSong('song1.mp3')">NO.1</div>
+  <div onclick="playSong('song2.mp3')">NO.2</div>
+  <div onclick="playSong('song3.mp3')">NO.3</div>
+</div><audio id="bgm" loop></audio>
+
+<!-- SLIDES --><div class="slide active">
+  <h1>Hlo Mam 👀</h1>
+  <p>Ruko ruko… ye chhota sa surprise plan kiya tha pta nhi kesa lagega tumhe🥲</p>
+  <button onclick="nextSlide()">Start 👉</button>
+</div><div class="slide">
+  <h1>🎂 Happy Birthday Mam 🎂</h1>
+  <p>Aaj ka din thoda extra special hai ✨</p>
+  <button onclick="nextSlide()">Next 👉</button>
+</div><div class="slide">
+  <h1>✨ Cute Moment ✨</h1>
+  <p>Sorry Par Sach Mein Mam Isme Bohot Cute Lag Rhi Hai🥹🫣</p>
+  <img src="photo1.jpg" class="photo">
+  <button onclick="nextSlide()">Next 👉</button>
+</div><!-- AI QUESTION SLIDE --><div class="slide">
+  <h1>🤖 AI Surprise 🤖</h1>
+  <p>
+    Maine AI se tumhari pic edit ki hai 👀✨ <br>
+    Dikhau?
+  </p>
+  <button onclick="nextSlide()">Yes 😳</button>
+  <button onclick="nextSlide()">Ye Bhi Yes Is Baar No Ka Option Nhi Hai 🥲</button>
+</div><!-- TRUTH + TYPING --><div class="slide" onmouseenter="startTyping()">
+  <h1>✨ Mam Ko AI Ki Jarurat Hai  hi Nhi✨🫣<</h1>
+  <img src="original.jpg" class="photo">
+  <p class="typing" id="typingText"></p>
+  <button onclick="nextSlide()">Next 👉</button>
+</div><!-- NEW VIDEO SLIDE --><div class="slide">
+  <h1>🎥 Wanna See Three Most Beautiful 👀 🎥</h1>
+  <p> </p>
+  <video id="Wanna See Three Most Beautiful" class="video" controls>
+    <source src="video.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <button onclick="nextSlide()">Next 👉</button>
+</div><!-- NEW VIDEO SLIDE 2 --><div class="slide">
+  <h1>  Mujhe Jawab Chahiye 🫠</h1>
+  <p> </p>
+  <video id="specialVideo2" class="video" controls>
+    <source src="video2.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <button onclick="nextSlide()">Next 👉</button>
+</div><!-- NEW VIDEO SLIDE 3 --><div class="slide">
+  <h1>🎬 The Only Person In My Life Who Deserve This 🎬</h1>
+  <p> </p>
+  <video id="specialVideo3" class="video" controls>
+    <source src="video3.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <button onclick="nextSlide()">Next 👉</button>
+</div><!-- CAKE COUNTDOWN --><div class="slide">
+  <h1>🎂 Make a Wish 🎂</h1>
+  <p id="countdownText">Ready? 🎉</p>  <div class="cake">
+    <div class="candles">
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+    </div>
+  </div><button onclick="startCountdown()">Start Countdown ⏳</button>
+
+</div><div class="slide">
+  <h1>💌 Final Wish 💌</h1>
+  <p>Happy Birthday Mam🙃..........jyada toh kuch nhi hai is baar bolne ko bas ye hi ki jyada tension vagera mat liya karo🥺......sab thik hi hoga aur jesa socha hai vesa hi hoga😌........12th mein bhi acche marks aayenge aur Neet bhi phodenge milke........aur baaki jyada logo ke baarein mein mat socha Karo ki kisne kya bola kya nhi kyunki unke liye tum mean karti ho ya nhi vo nhi pta but you mean a lot for me soooooooo Don't Overthink about anything which hurts you........Aur baaki acche se celebrate karna is baar ka gift pending hai🙂....... North mein aaogi toh vo bhi de dunga......bhale hi Tumhare college join karne ke baad vo gift mujhe personally deliver karna ho😂..........
+Baaki Celebrate Your day with full joy and Wishing you a very HAAAAAAAPPPPPPPPYYYYYYYYYY
+BIIIIIRRRRTTTTHHHHHDDDDAAAAYYYY Mam🫠 </p>
+  <button onclick="fireworks()">Finish 💖</button>
+</div><script>
+const slides=document.querySelectorAll('.slide');
+let index=0;
+let currentVideo=null;
+
+function nextSlide(){
+  // Stop any playing video on current slide
+  if(currentVideo){
+    currentVideo.pause();
+    currentVideo.currentTime=0;
+    currentVideo=null;
+  }
+
+  slides[index].classList.remove('active');
+  index++;
+  if(index>=slides.length) index=slides.length-1; // safety
+  slides[index].classList.add('active');
+
+  // Auto play video if present on new slide
+  const v=slides[index].querySelector('video');
+  if(v){
+    v.play().catch(()=>{});
+    currentVideo=v;
+  }
+}
+
+/* Music */
+function toggleMusic(){
+  const l=document.getElementById('musicList');
+  l.style.display=l.style.display==='block'?'none':'block';
+}
+function playSong(src){
+  const m=document.getElementById('bgm');
+  m.src=src;
+  m.play();
+}
+
+/* Hearts */
+setInterval(()=>{
+  const h=document.createElement('div');
+  h.className='heart';
+  h.innerHTML='❤';
+  h.style.left=Math.random()*100+'vw';
+  h.style.fontSize=(15+Math.random()*20)+'px';
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+},500);
+
+/* Typing Effect */
+const lines=[
+  " "
+];
+let l=0,c=0;
+function startTyping(){
+  const el=document.getElementById("typingText");
+  if(el.innerText!=='') return;
+  function type(){
+    if(l<lines.length){
+      if(c<lines[l].length){
+        el.innerText+=lines[l][c++];
+        setTimeout(type,60);
+      }else{
+        el.innerText+="\n";
+        l++; c=0;
+        setTimeout(type,500);
+      }
+    }
+  }
+  type();
+}
+
+/* Countdown */
+function startCountdown(){
+  let t=3;
+  const txt=document.getElementById("countdownText");
+  const i=setInterval(()=>{
+    txt.innerText=t>0?`${t}...`:"Make a Wish ✨";
+    if(t===0){
+      clearInterval(i);
+      document.querySelectorAll('.flame').forEach(f=>f.style.display='none');
+      setTimeout(nextSlide,1200);
+    }
+    t--;
+  },1000);
+}
+
+function fireworks(){
+  alert("🎉 Happy Birthday 💖");
+}
+</script></body>
+</html>
